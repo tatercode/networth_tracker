@@ -25,7 +25,6 @@ def getAccountsTotalBalance() -> float:
 
 def getBalanceByAccount() -> json:
     accounts = getAccounts()['accounts']
-    
     account_balance = defaultdict(float)
     for account in accounts:
         name = account['name']
