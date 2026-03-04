@@ -1,5 +1,4 @@
 from collections import defaultdict
-import json
 from typing import Any, cast
 
 import requests
@@ -26,11 +25,11 @@ def getAccountsTotalBalance() -> float:
 
     return balance
 
-def getBalanceByAccount() -> str:
+def getBalanceByAccount() -> dict[str, Any]:
     accounts = cast(list[dict[str, Any]], getAccounts()['accounts'])
-    account_balance = defaultdict(float)
+    account_balance: dict[str, Any] = {}
     for account in accounts:
         name = account['name']
         balance = account['balance']
         account_balance[name] = balance
-    return json.dumps(account_balance)
+    return account_balance
