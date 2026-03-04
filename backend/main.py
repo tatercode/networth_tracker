@@ -16,8 +16,12 @@ app.add_middleware(
   allow_headers=["*"],
 )
 
-@app.get("/", response_model=AccountsResponse)
+@app.get("/")
 async def root():
+    return {"Status": "Online"}
+
+@app.get("get-everything", response_model=AccountsResponse)
+async def get_everything():
     all_accounts = getAccounts()
     return all_accounts
 
