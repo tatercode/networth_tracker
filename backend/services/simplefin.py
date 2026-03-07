@@ -1,9 +1,7 @@
-from collections import defaultdict
 from typing import Any, cast
 
 import requests
 from config import Settings
-
 
 def getAccounts() -> dict[str, Any]:
     access_url: str | None = Settings.access_url

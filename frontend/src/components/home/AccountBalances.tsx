@@ -1,12 +1,6 @@
 
 import { useEffect, useState } from "react";
 import { getAllBalances } from '@/services/balances';
-import {
-  Card,
-  CardTitle,
-  CardHeader,
-  CardContent,
-} from "@/components/ui/card"
 
 function AccountBalances() {
   const [accountBalances, setAccountBalances] = useState<Record<string, string> | null>(null);
@@ -20,20 +14,19 @@ function AccountBalances() {
     loadAccountBalances();
   }, [])
 
+  if (!accountBalances) {
+    return <p className="text-sm text-muted-foreground">Loading balances...</p>;
+  }
+
   return (
-    <main className="w-full max-w-lg">
-      {accountBalances &&
-        Object.entries(accountBalances).map(([name, balance]) => (
-          <Card className="w-full max-w-lg shadow-lg" key={name}>
-            <CardHeader>
-              <CardTitle className="text-2xl">{name}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <h1 className="mt-2 text-4xl font-semibold tracking-tight">{balance}</h1>
-            </CardContent>
-          </Card>
-        ))}
-    </main>
+    <div className="space-y-2">
+      {Object.entries(accountBalances).map(([name, balance]) => (
+        <div className="flex items-center justify-between rounded-md border px-3 py-2" key={name}>
+          <p className="pr-4 text-sm">{name}</p>
+          <p className="text-sm font-semibold">{balance}</p>
+        </div>
+      ))}
+    </div>
   )
 }
 

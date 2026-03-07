@@ -7,6 +7,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { getNetworth } from '@/services/balances';
+import AccountBalances from "./AccountBalances";
 
 function NetworthCard() {
   const [networth, setNetworth] = useState<number | undefined>();
@@ -33,6 +34,14 @@ function NetworthCard() {
             {networth === undefined ? 'Loading...' : `$${networth.toLocaleString()}`}
           </h1>
         </div>
+        <details className="mt-4 rounded-lg border bg-background px-4 py-3">
+          <summary className="cursor-pointer text-sm font-medium">
+            Account balances
+          </summary>
+          <div className="mt-3">
+            <AccountBalances />
+          </div>
+        </details>
       </CardContent>
     </Card>
   )
